@@ -1,0 +1,21 @@
+package com.sample.write_sender
+import com.example.backdemo.entity.SenderInfo
+import com.example.backdemo.drool.DroolUtils
+import com.example.backdemo.entity.TradeInfo
+import com.example.backdemo.drool.RuleInfo
+
+rule "SBWL|汇款人白名单"
+    activation-group "NAME-WRITE"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(payerId)
+    	)
+    	$sendInfo : SenderInfo(
+    	    DroolUtils.equals($tradeInfo.getPayerId(),userId),
+    	    DroolUtils.equals(whiteFlag,1)
+		)
+    then
+    	DroolUtils.hit(drools.getRule(), $ruleInfo, $tradeInfo, $sendInfo);
+end

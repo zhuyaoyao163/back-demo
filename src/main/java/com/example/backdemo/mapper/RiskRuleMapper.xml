@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backdemo.mapper.RiskRuleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.backdemo.entity.RiskRule">
+        <id column="id" property="id" />
+        <result column="task_id" property="taskId" />
+        <result column="event" property="event" />
+        <result column="priority" property="priority" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="is_delete" property="isDelete" />
+        <result column="time_segment" property="timeSegment" />
+        <result column="time_unit" property="timeUnit" />
+        <result column="trade_start_time" property="tradeStartTime" />
+        <result column="trade_end_time" property="tradeEndTime" />
+        <result column="trade_limit_nums" property="tradeLimitNums" />
+        <result column="trade_limit_money_currency" property="tradeLimitMoneyCurrency" />
+        <result column="trade_limit_money" property="tradeLimitMoney" />
+        <result column="register_country_iso_code" property="registerCountryIsoCode" />
+        <result column="kyc_country_iso_code" property="kycCountryIsoCode" />
+        <result column="rule_start_time" property="ruleStartTime" />
+        <result column="rule_end_time" property="ruleEndTime" />
+        <result column="risk_level" property="riskLevel" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+</mapper>

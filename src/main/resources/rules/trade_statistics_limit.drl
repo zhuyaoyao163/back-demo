@@ -1,0 +1,120 @@
+package com.sample.trade_statistics_limit
+import com.example.backdemo.drool.RuleInfo
+import com.example.backdemo.entity.TradeInfo
+import com.example.backdemo.entity.RiskRule
+import com.example.backdemo.drool.DroolUtils
+import com.example.backdemo.drool.RuleEventEnum
+import com.example.backdemo.drool.CounterComponent
+
+
+
+global CounterComponent counterComponent
+
+/*
+单人单日完成订单状态超过3笔，系统将用户状态退回到待KYC，并将当日订单信息自动邮件推送客户询问收付款双方的关系，汇款目的，收款人联系方式。
+*/
+rule "TRADE_STATISTICS|单人单日完成订单状态超过3笔"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(amount,payerId)
+    	)
+    	$riskRule : RiskRule(
+    	    DroolUtils.equals(RuleEventEnum.SINGLE_DAY_LIMIT_NUMS.getCode(),event)
+		)
+    then
+        System.out.println("TRADE_STATISTICS|单人单日完成订单状态超过3笔");
+    	counterComponent.isExcess($tradeInfo, $riskRule, drools.getRule(), $ruleInfo);
+end
+
+/*单人单日完成订单状态加总金额超过3000美元及等值外币，系统将用户状态退回到待KYC，
+并将当日订单信息自动邮件推送客户询问收付款双方的关系，汇款目的，收款人联系方式。*/
+rule "TRADE_STATISTICS|单人单日完成订单状态加总金额超过3000美元及等值外币"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo(
+//    	    DroolUtils.print(event,"event")
+    	)
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.print(applyNo,"applyNO"),
+    	    DroolUtils.isNotEmpty(amount,payerId)
+    	)
+    	$riskRule : RiskRule(
+    	    DroolUtils.equals(RuleEventEnum.SINGLE_DAY_LIMIT_MONEY.getCode(),event)
+		)
+    then
+        System.out.println("TRADE_STATISTICS|单人单日完成订单状态加总金额超过3000美元及等值外币");
+    	counterComponent.isExcess($tradeInfo, $riskRule, drools.getRule(), $ruleInfo);
+end
+
+/*单人每周完成订单状态加总金额超过10000美元及等值外币，系统将用户账号直接加入黑名单，
+并将当日订单信息自动邮件推送客户询问收付款双方的关系，汇款目的，收款人联系方式。*/
+rule "TRADE_STATISTICS|单人每周完成订单状态加总金额超过10000美元及等值外币"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(amount,payerId)
+    	)
+    	$riskRule : RiskRule(
+    	    DroolUtils.equals(RuleEventEnum.SINGLE_WEEKEND_LIMIT_MONEY.getCode(),event)
+		)
+    then
+        System.out.println("TRADE_STATISTICS|单人每周完成订单状态加总金额超过10000美元及等值外币");
+    	counterComponent.isExcess($tradeInfo, $riskRule, drools.getRule(), $ruleInfo);
+end
+
+/*单人单月完成订单状态超过15笔，系统将用户账号直接加入黑名单，
+并将当日订单信息自动邮件推送客户询问收付款双方的关系，汇款目的，收款人联系方式。*/
+rule "TRADE_STATISTICS|单人单月完成订单状态超过15笔"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(amount,payerId)
+    	)
+    	$riskRule : RiskRule(
+    	    DroolUtils.equals(RuleEventEnum.SINGLE_WEEKEND_LIMIT_NUMS.getCode(),event)
+		)
+    then
+        System.out.println("TRADE_STATISTICS|单人单月完成订单状态超过15笔");
+    	counterComponent.isExcess($tradeInfo, $riskRule, drools.getRule(), $ruleInfo);
+end
+/*
+单人单月完成订单状态加总金额超过10000美元及等值外币，系统将用户账号直接加入黑名单，
+并将当日订单信息自动邮件推送客户询问收付款双方的关系，汇款目的，收款人联系方式，付款人收入水平及相关证明。
+*/
+rule "TRADE_STATISTICS|单人单月完成订单状态加总金额超过10000美元及等值外币"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(amount,payerId)
+    	)
+    	$riskRule : RiskRule(
+    	    DroolUtils.equals(RuleEventEnum.SINGLE_MONTH_LIMIT_MONEY.getCode(),event)
+		)
+    then
+        System.out.println("TRADE_STATISTICS|单人单月完成订单状态加总金额超过10000美元及等值外币");
+    	counterComponent.isExcess($tradeInfo, $riskRule, drools.getRule(), $ruleInfo);
+end
+/*
+单人每年汇往中国地区，完成订单状态加总金额超过50000美元及等值外币，系统将用户账号直接加入黑名单，
+并将当日订单信息自动邮件推送客户询问收付款双方的关系，汇款目的，收款人联系方式，付款人收入水平及相关证明。
+*/
+rule "TRADE_STATISTICS|单人每年汇往中国地区，完成订单状态加总金额超过50000美元及等值外币"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(amount,payerId),
+    	    DroolUtils.equals(destinationCurrency,"CNY")
+    	)
+    	$riskRule : RiskRule(
+    	    DroolUtils.equals(RuleEventEnum.SINGLE_YEAR_CHINA_LIMIT_MONEY.getCode(),event)
+		)
+    then
+        System.out.println("TRADE_STATISTICS|单人每年汇往中国地区，完成订单状态加总金额超过50000美元及等值外币");
+    	counterComponent.isExcess($tradeInfo, $riskRule, drools.getRule(), $ruleInfo);
+end

@@ -1,0 +1,40 @@
+package com.sample.name_list
+import com.example.backdemo.drool.RuleInfo
+import com.example.backdemo.entity.TradeInfo
+import com.example.backdemo.entity.RiskRule
+import com.example.backdemo.drool.DroolUtils
+import com.example.backdemo.drool.RuleEventEnum
+import com.example.backdemo.entity.SenderInfo
+import com.example.backdemo.entity.PayeeInfo
+
+rule "SBNL|汇款人黑名单"
+    activation-group "NAME-BLACK"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(payerId)
+    	)
+    	$sendInfo : SenderInfo(
+    	    DroolUtils.equals($tradeInfo.getPayerId(),userId),
+    	    DroolUtils.equals(blackFlag,1)
+		)
+    then
+    	DroolUtils.hit(drools.getRule(), $ruleInfo, $tradeInfo, $sendInfo);
+end
+
+rule "PBNL|收款人黑名单"
+    activation-group "NAME-BLACK"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(amount,payerId)
+    	)
+    	$payeeInfo : PayeeInfo(
+    	    DroolUtils.equals($tradeInfo.getPayeeId(),payeeId),
+    	    DroolUtils.equals(blackFlag,1)
+		)
+    then
+    	DroolUtils.hit(drools.getRule(), $ruleInfo, $tradeInfo, $payeeInfo);
+end

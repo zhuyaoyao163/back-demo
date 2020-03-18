@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backdemo.mapper.TradeInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.backdemo.entity.TradeInfo">
+        <id column="id" property="id" />
+        <result column="payee_id" property="payeeId" />
+        <result column="payer_id" property="payerId" />
+        <result column="apply_no" property="applyNo" />
+        <result column="currency" property="currency" />
+        <result column="amount" property="amount" />
+        <result column="pay_type" property="payType" />
+        <result column="status" property="status" />
+        <result column="creator" property="creator" />
+        <result column="create_time" property="createTime" />
+        <result column="updater" property="updater" />
+        <result column="update_time" property="updateTime" />
+        <result column="destination_amount" property="destinationAmount" />
+        <result column="destination_currency" property="destinationCurrency" />
+        <result column="card_type" property="cardType" />
+        <result column="card_no" property="cardNo" />
+    </resultMap>
+
+</mapper>

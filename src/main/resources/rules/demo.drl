@@ -1,0 +1,23 @@
+package com.sample.demo
+import com.example.backdemo.drool.RuleInfo
+import com.example.backdemo.entity.TradeInfo
+import com.example.backdemo.entity.RiskRule
+import com.example.backdemo.drool.DroolUtils
+import com.example.backdemo.drool.RuleEventEnum
+
+rule "TRADE_SINGLE|单笔金额小于最小限制"
+	activation-group "QUOTA-SINGLE"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(amount,payerId)
+    	)
+    	$riskRule : RiskRule(
+            DroolUtils.checkAmount(tradeLimitMoney, null, $tradeInfo.getAmount()),
+            DroolUtils.equals(event, RuleEventEnum.SINGLE_ORDER_LIMIT_MIN_MONEY.getCode())
+		)
+    then
+        System.out.println("111111111111");
+    	DroolUtils.hit(drools.getRule(), $ruleInfo, $tradeInfo, $riskRule);
+end

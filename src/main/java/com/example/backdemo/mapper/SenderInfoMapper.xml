@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backdemo.mapper.SenderInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.backdemo.entity.SenderInfo">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="dob" property="dob" />
+        <result column="full_address" property="fullAddress" />
+        <result column="document_type" property="documentType" />
+        <result column="issue_date" property="issueDate" />
+        <result column="expiry_date" property="expiryDate" />
+        <result column="document_number" property="documentNumber" />
+        <result column="mobile" property="mobile" />
+        <result column="register_country_iso_code" property="registerCountryIsoCode" />
+        <result column="kyc_country_iso_code" property="kycCountryIsoCode" />
+        <result column="email" property="email" />
+        <result column="first_name" property="firstName" />
+        <result column="last_name" property="lastName" />
+        <result column="white_flag" property="whiteFlag" />
+        <result column="black_flag" property="blackFlag" />
+        <result column="black_desc" property="blackDesc" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+</mapper>

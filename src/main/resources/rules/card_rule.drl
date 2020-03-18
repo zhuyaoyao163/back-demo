@@ -1,0 +1,112 @@
+package com.sample.card
+import com.example.backdemo.entity.CardInfo
+import com.example.backdemo.drool.DroolUtils
+import com.example.backdemo.drool.RuleInfo
+import com.example.backdemo.entity.TradeInfo
+import java.util.List
+import com.example.backdemo.drool.RuleEventEnum
+
+global List<TradeInfo> cardFailDayInfoList
+global List<CardInfo> cardBlackHistoryList
+
+rule "CARD_INFO|银行卡白名单"
+    salience 999
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(cardNo)
+    	)
+    	$cardInfo : CardInfo(
+    	    DroolUtils.isNotEmpty(cardNo),
+    	    DroolUtils.equals(whiteFlag,1),
+    	    DroolUtils.equals(cardNo,$tradeInfo.getCardNo())
+    	)
+        eval(true)
+    then
+        $ruleInfo.setWriteFlag(1);
+        $ruleInfo.setEvent(RuleEventEnum.CARD_WHITE_NAME_LIST.getCode());
+        update($ruleInfo)
+    	DroolUtils.hit(drools.getRule(), $ruleInfo, $tradeInfo, $cardInfo);
+end
+
+rule "CARD_INFO|银行卡黑名单"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(cardNo)
+    	)
+    	$cardInfo : CardInfo(
+    	    DroolUtils.isNotEmpty(cardNo),
+    	    DroolUtils.equals(blackFlag,1),
+    	    DroolUtils.equals(cardNo,$tradeInfo.getCardNo())
+    	)
+    then
+        $ruleInfo.setEvent(RuleEventEnum.CARD_BLACK_NAME_LIST.getCode());
+        update($ruleInfo)
+    	DroolUtils.hit(drools.getRule(), $ruleInfo, $tradeInfo, $cardInfo);
+end
+
+/*
+一张卡仅能被一个用户使用，一张卡与一个用户ID绑定。若有第二个用户试图使用该卡，将这两个用户都加入黑名单，并阻止该笔交易。系统应自动分别发邮件推送给这两个客户询问涉及到该卡的历史订单，汇款目的，收付款双方关系，支付卡图片（必须能看清持卡人和卡的前6位及后4位）；若核实实为一个用户发起的付款，则邮件回复用户，最终该卡仅与一个用户ID绑定。
+*/
+
+rule "CARD_INFO|一张卡仅能被一个用户使用"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(cardNo)
+    	)
+    	$cardInfo : CardInfo(
+    	    DroolUtils.isNotEmpty(cardNo),
+    	    DroolUtils.isNotEquals(blackFlag,1),
+    	    DroolUtils.isNotEquals($tradeInfo.getPayerId(),userId)
+    	)
+    then
+    	DroolUtils.hit(drools.getRule(), $ruleInfo, $tradeInfo, $cardInfo);
+end
+
+/*
+使用信用卡的，付款尝试连续超过3次，本次交易直接致失败，当日内不许交易；
+
+*/
+rule "CARD_INFO|信用卡重试次数过多"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(cardNo,cardType)
+    	)
+    	$cardInfo : CardInfo(
+    	    DroolUtils.isNotEmpty(cardNo,cardType),
+    	    DroolUtils.equals(cardType,2)
+    	)
+    	List(cardFailDayInfoList.size() > 3)
+    then
+        $ruleInfo.setEvent(RuleEventEnum.CREDIT_CARD_RETRY_TIMES_TO_MUCH.getCode());
+        update($ruleInfo)
+    	DroolUtils.hit(drools.getRule(), $ruleInfo, $tradeInfo, $cardInfo);
+end
+
+/*加入黑名单的卡，下次再使用该卡支付时，连续输错2次，限制登录，*/
+
+rule "CARD_INFO|（信用卡）加入黑名单的卡，下次再使用该卡支付时，连续输错2次，限制登录"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$tradeInfo : TradeInfo(
+    	    DroolUtils.isNotEmpty(cardNo)
+    	)
+    	$cardInfo : CardInfo(
+    	    DroolUtils.isNotEmpty(cardNo,cardType),
+    	    DroolUtils.equals(cardType,2),
+    	    this memberOf cardBlackHistoryList
+    	)
+    	eval(cardFailDayInfoList.size() > 2)
+    then
+        $ruleInfo.setEvent(RuleEventEnum.CREDIT_CARD_BLACK_HISTORY_TWO_TIMES.getCode());
+        update($ruleInfo)
+    	DroolUtils.hit(drools.getRule(), $ruleInfo, $tradeInfo, $cardInfo);
+end

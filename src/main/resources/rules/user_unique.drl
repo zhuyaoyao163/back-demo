@@ -1,0 +1,27 @@
+package com.sample.user_unique
+import com.example.backdemo.entity.SenderInfo
+import com.example.backdemo.entity.TradeInfo
+import com.example.backdemo.drool.RuleInfo
+import com.example.backdemo.drool.DroolUtils
+import com.example.backdemo.drool.RuleEventEnum
+import java.util.List
+import com.example.backdemo.drool.RiskLevelEnum
+
+global List<SenderInfo> senderList
+
+rule "USER_UNIQUE|用户唯一性"
+    lock-on-active true
+    when
+    	$ruleInfo : RuleInfo()
+    	$sendInfo : SenderInfo(
+    	    DroolUtils.isNotEmpty(firstName,lastName,dob),
+    	    this memberOf senderList
+		)
+		eval(senderList.size()>1)
+//		List($sendInfo memberOf senderList)
+    then
+        $ruleInfo.setEvent(RuleEventEnum.USER_IS_NOT_UNIQUE.getCode());
+        $ruleInfo.setRiskLevel(RiskLevelEnum.PULL_BLACK_USER.getLevel());
+        update($ruleInfo)
+    	DroolUtils.hit(drools.getRule(), $ruleInfo, null, $sendInfo);
+end
