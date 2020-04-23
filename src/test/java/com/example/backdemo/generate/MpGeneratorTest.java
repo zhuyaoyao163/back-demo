@@ -26,13 +26,16 @@ import org.junit.jupiter.api.Test;
 public class MpGeneratorTest {
 
     private static final String OutputDir = "/Users/zhuyaoyao/code/mybatis_code";
-    @Test
-    public void generateCode() {
-//        generate("", "trade_info","sender_info","payee_info","card_info", "risk_recond","risk_rule");
-        generate("", "card_use_record");
+
+    public static void main(String[] args) {
+        generateCode();
+    }
+    public static void generateCode() {
+        generate("risk", "trade_info", "sender_info", "payee_info", "card_info", "risk_recond", "risk_rule", "country", "msg_template");
+//        generate("", "country");
     }
 
-    private void generate(String moduleName, String... tableNamesInclude){
+    private static void generate(String moduleName, String... tableNamesInclude){
         AutoGenerator mpg = new AutoGenerator();
 
         // 全局配置
@@ -51,19 +54,20 @@ public class MpGeneratorTest {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://10.7.2.20:23306/bpm_risk?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true");
+//        dsc.setUrl("jdbc:mysql://10.7.2.20:23306/bpm_risk?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true");
+        dsc.setUrl("jdbc:mysql://49.232.160.134:3306/bpm_risk?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("otransfer");
-        dsc.setPassword("otransfer");
+        dsc.setUsername("root");
+        dsc.setPassword("root-test");
         dsc.setTypeConvert(new MySqlTypeConvertCustom());
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(moduleName);
-//        pc.setParent("com.example.backdemo");
-        pc.setParent("com.bee.bpm.droolsrisk.core");
+        pc.setParent("com.example.backdemo");
+//        pc.setParent("com.bee.bpm.droolsrisk.core");
         pc.setEntity("entity");
         pc.setMapper("mapper");
         pc.setXml("mapper");

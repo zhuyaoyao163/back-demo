@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author superman
- * @since 2020-02-24
+ * @since 2020-04-23
  */
 public interface RiskRuleMapper extends BaseMapper<RiskRule> {
 

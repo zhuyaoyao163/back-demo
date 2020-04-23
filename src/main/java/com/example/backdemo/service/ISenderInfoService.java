@@ -1,7 +1,7 @@
 package com.example.backdemo.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.backdemo.entity.SenderInfo;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import com.example.backdemo.entity.SenderInfo;
  * </p>
  *
  * @author superman
- * @since 2020-02-11
+ * @since 2020-04-23
  */
 public interface ISenderInfoService extends IService<SenderInfo> {
 

@@ -11,10 +11,10 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author superman
- * @since 2020-02-13
+ * @since 2020-04-23
  */
 @Controller
-@RequestMapping("/risk-recond")
+@RequestMapping("/risk/risk-recond")
 public class RiskRecondController {
 
 }

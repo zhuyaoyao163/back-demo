@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 风控记录表
+ * 
  * </p>
  *
  * @author superman
@@ -22,70 +22,31 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("risk_recond")
-public class RiskRecond extends Model<RiskRecond> {
+@TableName("msg_template")
+public class MsgTemplate extends Model<MsgTemplate> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 自增长ID
-     */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 规则ID
-     */
-    @TableField("rule_id")
-    private Integer ruleId;
-
-    /**
-     * 事件
+     * 风控事件
      */
     @TableField("event")
     private String event;
 
-    /**
-     * 用户Id
-     */
-    @TableField("user_id")
-    private Integer userId;
-
-    /**
-     * 订单号
-     */
-    @TableField("apply_no")
-    private String applyNo;
-
-    /**
-     * 卡号
-     */
-    @TableField("card_no")
-    private String cardNo;
-
-    /**
-     * 只做标识，不真正删除数据
-     */
-    @TableField("is_delete")
-    private String isDelete;
-
-    /**
-     * 规则级别
-     */
-    @TableField("risk_level")
-    private Integer riskLevel;
-
-    /**
-     * 创建时间
-     */
     @TableField("create_time")
     private LocalDateTime createTime;
 
-    /**
-     * 修改时间
-     */
     @TableField("update_time")
     private LocalDateTime updateTime;
+
+    /**
+     * 提示语
+     */
+    @TableField("tip")
+    private String tip;
 
 
     @Override

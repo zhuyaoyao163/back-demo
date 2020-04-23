@@ -5,11 +5,11 @@ import com.example.backdemo.entity.CardInfo;
 
 /**
  * <p>
- * 汇款申请表 服务类
+ * 风控卡信息表 服务类
  * </p>
  *
  * @author superman
- * @since 2020-02-13
+ * @since 2020-04-23
  */
 public interface ICardInfoService extends IService<CardInfo> {
 

@@ -16,6 +16,10 @@ public class HitRuleException extends RuntimeException{
     public HitRuleException() {
     }
 
+    public HitRuleException(String msg) {
+        super(msg);
+    }
+
     public HitRuleException(RuleInfo ruleInfo) {
         this.ruleInfo = ruleInfo;
     }
@@ -63,15 +67,5 @@ public class HitRuleException extends RuntimeException{
 
     public void setRuleInfo(RuleInfo ruleInfo) {
         this.ruleInfo = ruleInfo;
-    }
-
-    @Override
-    public String toString() {
-        return "HitRuleException{" +
-                "code='" + code + '\'' +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                ", ruleInfo=" + ruleInfo +
-                '}';
     }
 }

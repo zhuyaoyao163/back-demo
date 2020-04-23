@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author superman
- * @since 2020-02-24
+ * @since 2020-04-23
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -77,6 +77,12 @@ public class CardInfo extends Model<CardInfo> {
      */
     @TableField("white_flag")
     private Integer whiteFlag;
+
+    /**
+     * 国家代码
+     */
+    @TableField("country_code")
+    private String countryCode;
 
 
     @Override

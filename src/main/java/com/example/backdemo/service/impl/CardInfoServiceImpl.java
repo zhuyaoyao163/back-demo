@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 汇款申请表 服务实现类
+ * 风控卡信息表 服务实现类
  * </p>
  *
  * @author superman
- * @since 2020-02-13
+ * @since 2020-04-23
  */
 @Service
 public class CardInfoServiceImpl extends ServiceImpl<CardInfoMapper, CardInfo> implements ICardInfoService {

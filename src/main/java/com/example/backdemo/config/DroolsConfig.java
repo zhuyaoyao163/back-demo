@@ -38,12 +38,8 @@ public class DroolsConfig {
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
         ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
         Resource[] files = resourcePatternResolver.getResources("classpath*:" + RULES_PATH + "**/*.*");
-        System.out.println("files size: "+files.length);
         String path = null;
         for (Resource file : files) {
-            System.out.println("==============================================================");
-            System.out.println("==============================="+file.getFilename()+"===============================");
-            System.out.println("==============================================================");
             path = RULES_PATH + file.getFilename();
             kieFileSystem.write(ResourceFactory.newClassPathResource(path, "UTF-8"));
         }

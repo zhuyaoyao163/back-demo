@@ -7,14 +7,14 @@ import org.springframework.stereotype.Controller;
 
 /**
  * <p>
- * 汇款订单表 前端控制器
+ *  前端控制器
  * </p>
  *
  * @author superman
  * @since 2020-04-23
  */
 @Controller
-@RequestMapping("/risk/trade-info")
-public class TradeInfoController {
+@RequestMapping("/risk/country")
+public class CountryController {
 
 }

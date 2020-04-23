@@ -7,14 +7,14 @@ import org.springframework.stereotype.Controller;
 
 /**
  * <p>
- * 汇款申请表 前端控制器
+ * 风控卡信息表 前端控制器
  * </p>
  *
  * @author superman
- * @since 2020-02-13
+ * @since 2020-04-23
  */
 @Controller
-@RequestMapping("/card-info")
+@RequestMapping("/risk/card-info")
 public class CardInfoController {
 
 }

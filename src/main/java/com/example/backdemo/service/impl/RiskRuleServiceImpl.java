@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author superman
- * @since 2020-02-06
+ * @since 2020-04-23
  */
 @Service
 public class RiskRuleServiceImpl extends ServiceImpl<RiskRuleMapper, RiskRule> implements IRiskRuleService {

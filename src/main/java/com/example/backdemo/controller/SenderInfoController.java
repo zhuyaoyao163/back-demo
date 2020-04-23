@@ -11,10 +11,10 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author superman
- * @since 2020-02-11
+ * @since 2020-04-23
  */
 @Controller
-@RequestMapping("/sender-info")
+@RequestMapping("/risk/sender-info")
 public class SenderInfoController {
 
 }

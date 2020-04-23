@@ -13,6 +13,7 @@
         <result column="update_time" property="updateTime" />
         <result column="black_flag" property="blackFlag" />
         <result column="white_flag" property="whiteFlag" />
+        <result column="country_code" property="countryCode" />
     </resultMap>
 
 </mapper>
