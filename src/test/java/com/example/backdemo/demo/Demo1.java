@@ -14,6 +14,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 
 import java.lang.ref.WeakReference;
@@ -242,6 +243,17 @@ public class Demo1 {
         List<String> list2 = Splitter.on(" ").omitEmptyStrings().splitToList(str2);
         System.out.println(list.containsAll(list2));
         list.forEach(System.out::println);
+    }
+
+
+    @Test
+    public void testFinal() {
+        String str = "aaa";
+        final String a = str;
+        System.out.println(a);
+
+        str = "bbb";
+        System.out.println(a);
     }
 
 
