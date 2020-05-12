@@ -201,6 +201,11 @@
             <artifactId>redisson-spring-boot-starter</artifactId>
             <version>3.12.5</version>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>3.1.0</version>
+        </dependency>
 
     </dependencies>
 

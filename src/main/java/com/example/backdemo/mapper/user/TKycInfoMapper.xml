@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backdemo.mapper.user.TKycInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.backdemo.entity.user.TKycInfo">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="country" property="country" />
+        <result column="country_status" property="countryStatus" />
+        <result column="reference" property="reference" />
+        <result column="first_name" property="firstName" />
+        <result column="last_name" property="lastName" />
+        <result column="lastname2" property="lastname2" />
+        <result column="nativename" property="nativename" />
+        <result column="nationality_country_iso_code" property="nationalityCountryIsoCode" />
+        <result column="code" property="code" />
+        <result column="country_of_birth_iso_code" property="countryOfBirthIsoCode" />
+        <result column="postal_code" property="postalCode" />
+        <result column="city" property="city" />
+        <result column="Country_name" property="countryName" />
+        <result column="Building_No_or_name" property="buildingNoOrName" />
+        <result column="Street" property="Street" />
+        <result column="country_iso_code" property="countryIsoCode" />
+        <result column="msisdn" property="msisdn" />
+        <result column="occupation" property="occupation" />
+        <result column="bank" property="bank" />
+        <result column="bank_account" property="bankAccount" />
+        <result column="card" property="card" />
+        <result column="province_state" property="provinceState" />
+        <result column="beneficiary_relationship" property="beneficiaryRelationship" />
+        <result column="source_of_funds" property="sourceOfFunds" />
+        <result column="name_status" property="nameStatus" />
+        <result column="dob" property="dob" />
+        <result column="dob_status" property="dobStatus" />
+        <result column="full_address" property="fullAddress" />
+        <result column="full_address_status" property="fullAddressStatus" />
+        <result column="document_type" property="documentType" />
+        <result column="document_type_status" property="documentTypeStatus" />
+        <result column="issue_date" property="issueDate" />
+        <result column="issue_date_status" property="issueDateStatus" />
+        <result column="expiry_date" property="expiryDate" />
+        <result column="expiry_date_status" property="expiryDateStatus" />
+        <result column="document_number" property="documentNumber" />
+        <result column="document_number_status" property="documentNumberStatus" />
+        <result column="document_url" property="documentUrl" />
+        <result column="document_addition_url" property="documentAdditionUrl" />
+        <result column="address_type" property="addressType" />
+        <result column="address_type_status" property="addressTypeStatus" />
+        <result column="address_url" property="addressUrl" />
+        <result column="face_url" property="faceUrl" />
+        <result column="face_status" property="faceStatus" />
+        <result column="background_status" property="backgroundStatus" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="user_no" property="userNo" />
+        <result column="check_type" property="checkType" />
+        <result column="status" property="status" />
+        <result column="document_url_status" property="documentUrlStatus" />
+        <result column="document_addition_url_status" property="documentAdditionUrlStatus" />
+        <result column="address_url_status" property="addressUrlStatus" />
+    </resultMap>
+
+</mapper>

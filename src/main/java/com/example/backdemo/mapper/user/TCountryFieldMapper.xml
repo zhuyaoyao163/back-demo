@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backdemo.mapper.user.TCountryFieldMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.backdemo.entity.user.TCountryField">
+        <id column="id" property="id" />
+        <result column="country" property="country" />
+        <result column="business_type" property="businessType" />
+        <result column="business_name_en" property="businessNameEn" />
+        <result column="business_name_cn" property="businessNameCn" />
+        <result column="field_value_cn" property="fieldValueCn" />
+        <result column="field_value_en" property="fieldValueEn" />
+        <result column="field_name_en" property="fieldNameEn" />
+        <result column="field_name_cn" property="fieldNameCn" />
+        <result column="field_type" property="fieldType" />
+        <result column="field_required" property="fieldRequired" />
+        <result column="kyc_required" property="kycRequired" />
+        <result column="order_by" property="orderBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+</mapper>

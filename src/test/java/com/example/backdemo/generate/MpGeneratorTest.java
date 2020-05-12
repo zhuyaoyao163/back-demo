@@ -31,7 +31,17 @@ public class MpGeneratorTest {
         generateCode();
     }
     public static void generateCode() {
-        generate("risk", "trade_info", "sender_info", "payee_info", "card_info", "risk_recond", "risk_rule", "country", "msg_template");
+//        generate("risk", "trade_info", "sender_info", "payee_info", "card_info", "risk_recond", "risk_rule", "country", "msg_template");
+        generate("user", "appeal",
+                "language",
+                "sms_type",
+                "t_bank_account",
+                "t_country_field",
+                "t_feedback",
+                "t_kyc_info",
+                "t_kyc_status",
+                "t_payee");
+
 //        generate("", "country");
     }
 
@@ -55,7 +65,7 @@ public class MpGeneratorTest {
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
 //        dsc.setUrl("jdbc:mysql://10.7.2.20:23306/bpm_risk?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true");
-        dsc.setUrl("jdbc:mysql://49.232.160.134:3306/bpm_risk?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true");
+        dsc.setUrl("jdbc:mysql://49.232.160.134:3306/bpm_user?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");

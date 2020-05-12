@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backdemo.mapper.user.TBankAccountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.backdemo.entity.user.TBankAccount">
+        <id column="id" property="id" />
+        <result column="msisdn" property="msisdn" />
+        <result column="bank_account" property="bankAccount" />
+        <result column="iban" property="iban" />
+        <result column="clabe" property="clabe" />
+        <result column="cbu" property="cbu" />
+        <result column="cbu_alias" property="cbuAlias" />
+        <result column="swift" property="swift" />
+        <result column="ifs_code" property="ifsCode" />
+        <result column="sort_code" property="sortCode" />
+        <result column="aba_routing_number" property="abaRoutingNumber" />
+        <result column="bsb_number" property="bsbNumber" />
+        <result column="branch_number" property="branchNumber" />
+        <result column="account_number" property="accountNumber" />
+        <result column="email" property="email" />
+        <result column="entity_id" property="entityId" />
+        <result column="precision" property="precision" />
+        <result column="bank_name" property="bankName" />
+        <result column="bank_branch_name" property="bankBranchName" />
+        <result column="bank_code" property="bankCode" />
+        <result column="address" property="address" />
+        <result column="minimum_transaction_amount" property="minimumTransactionAmount" />
+        <result column="maximum_transaction_amount" property="maximumTransactionAmount" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+</mapper>

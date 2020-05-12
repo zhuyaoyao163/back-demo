@@ -37,8 +37,22 @@ public class RedissionClientTest {
 
     @Test
     public void baseUse() {
-        reactiveRedisTemplate.opsForValue().set("test", "test");
-        redisTemplate.opsForValue().set("qwe","sadas");
+//        reactiveRedisTemplate.opsForValue().set("test", "test");
+//        redisTemplate.opsForValue().set("qwe","sadas");
+        Stopwatch stopwatch = Stopwatch.createStarted();
+        redisTemplate.opsForList().leftPush("list", "a");
+        redisTemplate.opsForList().leftPush("list", "b");
+        redisTemplate.opsForList().leftPush("list", "c");
+        Object o = redisTemplate.opsForList().rightPop("list");
+        System.out.println(o.toString());
+        o = redisTemplate.opsForList().rightPop("list");
+        System.out.println(o.toString());
+//        o = redisTemplate.opsForList().rightPop("list");
+//        System.out.println(o.toString());
+//        o = redisTemplate.opsForList().rightPop("list");
+//        System.out.println(o);
+        stopwatch.stop();
+        System.out.println(stopwatch.toString());
     }
 
     @Test

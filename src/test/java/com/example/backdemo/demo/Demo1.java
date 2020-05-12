@@ -256,6 +256,11 @@ public class Demo1 {
         System.out.println(a);
     }
 
+    @Test
+    public void testJack() {
+        ObjectMapper objectMapper = new ObjectMapper();
+    }
+
 
     public static void main(String[] args) throws JsonProcessingException {
 //        System.out.println(Demo1.test());
