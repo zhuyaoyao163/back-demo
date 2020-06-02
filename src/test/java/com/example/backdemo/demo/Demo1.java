@@ -261,6 +261,14 @@ public class Demo1 {
         ObjectMapper objectMapper = new ObjectMapper();
     }
 
+    public static void test12() {
+        List<Object> list = Lists.newArrayList(1, 2, 3, 4);
+        if (list.contains(1)) {
+            list.remove(Integer.valueOf(1));
+        }
+        System.out.println(list);
+    }
+
 
     public static void main(String[] args) throws JsonProcessingException {
 //        System.out.println(Demo1.test());
@@ -273,7 +281,8 @@ public class Demo1 {
 //        test8();
 //        test9();
 //        test10();
-        test11();
+//        test11();
+        test12();
 
     }
 }
