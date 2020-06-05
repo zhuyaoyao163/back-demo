@@ -1,48 +1,35 @@
-#spring:
-#  application:
-#    name: back-demo
-#  datasource:
-#    driverClassName: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://49.232.160.134:3306/klww_mdm?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
-#    username: root
-#    password: root-test
-#    type: com.alibaba.druid.pool.DruidDataSource
-
+customer:
+  ip: ENC(nj5O42Th0M6Q0GlXb4GEup7uj9zEOCzTcCRkDluxTxLM2Z4AYdZqqavwzEwzEVKT)
+  redis:
+    port: ENC(dvphhNHHfsl2pxZqV6sIZQ4JTZe5o6kf0Fk79pxshuCsSpkuCnos9esaTtTMEp+h)
+  mysql:
+    port: ENC(8MD/jZNughLPCD6NrDhMiOpJJtPeavuskdDlR/uM4PVBkrDnM+WJ0iz8zHcZGTcM)
+    user: ENC(YIHvAEtmVUdII7hHTD4nyNH+fv9ebOdOgRWnaPhAZP1p6E8howcZXj3HcaMDcbsw)
+    password: ENC(ExyTsG6BY42cR2M94C7FdTjs6qNHI5A9AaugkfY5MExW9FRR9TJeaHPjkDThRhNv)
 spring:
   application:
     name: back-demo
   datasource:
-#    driverClassName: com.p6spy.engine.spy.P6SpyDriver
-#    url: jdbc:p6spy:mysql://db-01.test.otransferx.com:3306/bpm_risk?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
-#    username: otransfer
-#    password: otransfer
-#    type: com.alibaba.druid.pool.DruidDataSource
-
-#    driverClassName: com.p6spy.engine.spy.P6SpyDriver
-#    url: jdbc:p6spy:mysql://49.232.160.134:3306/bpm_risk?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
-#    username: root
-#    password: root-test
-#    type: com.alibaba.druid.pool.DruidDataSource
     dynamic:
       primary: risk #设置默认的数据源或者数据源组,默认值即为master
       strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候回抛出异常,不启动会使用默认数据源.
       datasource:
         risk:
-          url: jdbc:mysql://49.232.160.134:3306/bpm_risk?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
-          username: root
-          password: root-test
+          url: jdbc:mysql://${customer.ip}:${customer.mysql.port}/bpm_risk?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
+          username: ${customer.mysql.user}
+          password: ${customer.mysql.password}
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
         user:
-          url: jdbc:mysql://49.232.160.134:3306/bpm_user?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
-          username: root
-          password: root-test
+          url: jdbc:mysql://${customer.ip}:${customer.mysql.port}/bpm_user?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
+          username: ${customer.mysql.user}
+          password: ${customer.mysql.password}
           driver-class-name: com.mysql.cj.jdbc.Driver
           type: com.alibaba.druid.pool.DruidDataSource
       p6spy: true
   redis:
-    host: 49.232.160.134
-    port: 6379
+    host: ${customer.ip}
+    port: ${customer.redis.port}
     database: 0
 
   autoconfigure:
@@ -54,15 +41,15 @@ spring:
 #      strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候回抛出异常,不启动会使用默认数据源.
 #      datasource:
 #        risk:
-#          url: jdbc:p6spy:mysql://49.232.160.134:3306/bpm_risk?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
-#          username: root
-#          password: root-test
+#          url: jdbc:p6spy:mysql://xxxx:xxx/bpm_risk?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
+#          username: xxxx
+#          password: xxxxxx
 #          driver-class-name: com.p6spy.engine.spy.P6SpyDriver
 #          type: com.alibaba.druid.pool.DruidDataSource
 #        user:
-#          url: jdbc:p6spy:mysql://49.232.160.134:3306/bpm_user?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
-#          username: root
-#          password: root-test
+#          url: jdbc:p6spy:mysql://xxxx:xxxx/bpm_user?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
+#          username: xxxxx
+#          password: xxxxx
 #          driver-class-name: com.p6spy.engine.spy.P6SpyDriver
 #          type: com.alibaba.druid.pool.DruidDataSource
 ##        slave_2:
