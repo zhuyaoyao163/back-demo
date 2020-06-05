@@ -1,12 +1,8 @@
-package com.example.backdemo.singleton;
+package com.example.backdemo.demo.singleton;
 
 
 import com.example.backdemo.pattern.singleton.register.EnumSingleton;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.lang.reflect.Constructor;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.backdemo.singleton;
+package com.example.backdemo.demo.singleton;
 
 /**
  * Created by Tom.
