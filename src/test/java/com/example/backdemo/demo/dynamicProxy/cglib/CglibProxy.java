@@ -1,5 +1,6 @@
 package com.example.backdemo.demo.dynamicProxy.cglib;
 
+import net.sf.cglib.core.DebuggingClassWriter;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -38,6 +39,8 @@ public class CglibProxy implements MethodInterceptor {
     }
 
     public static void main(String[] args) {
+//        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "/Users/zhuyaoyao/code/study/back-demo/target/test-classes/com/example/backdemo/demo/dynamicProxy/cglib");
         Customer instance = (Customer) new CglibProxy().getInstance(Customer.class);
         instance.findLove();
     }

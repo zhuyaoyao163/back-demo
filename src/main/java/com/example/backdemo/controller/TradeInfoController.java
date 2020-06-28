@@ -1,6 +1,7 @@
 package com.example.backdemo.controller;
 
 
+import com.example.backdemo.common.annotation.TestAnnotation;
 import com.example.backdemo.entity.TradeInfo;
 import com.example.backdemo.service.ITradeInfoService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,7 @@ public class TradeInfoController {
     private ITradeInfoService tradeInfoService;
 
     @PostMapping("/list")
+    @TestAnnotation
     public Object list(){
         log.info("========================");
         List<TradeInfo> list = tradeInfoService.list();
