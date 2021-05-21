@@ -270,6 +270,62 @@ public class Demo1 {
     }
 
 
+    public static List<String> str_add_str(String a, String b) {
+        Preconditions.checkArgument(!StringUtils.isEmpty(a));
+        Preconditions.checkArgument(!StringUtils.isEmpty(b));
+
+        String[] stringA = a.split(StringUtils.EMPTY);
+        List<String> reverseA = Lists.reverse(Arrays.asList(stringA));
+
+
+        String[] stringB = b.split(StringUtils.EMPTY);
+        List<String> reverseB = Lists.reverse(Arrays.asList(stringB));
+
+        List<String> res = Lists.newArrayList();
+
+        int size = reverseA.size() >= reverseB.size() ? reverseA.size() + 1 : reverseB.size() + 1;
+
+        int tmp1 = reverseA.size();
+        reverseA = Lists.newArrayList(reverseA);
+        reverseB = Lists.newArrayList(reverseB);
+        for (int i = tmp1; i < size; i++) {
+            reverseA.add(i, "0");
+        }
+        int tmp2 = reverseB.size();
+        for (int j = tmp2; j < size; j++) {
+            reverseB.add(j, "0");
+        }
+        int approve = 0;
+        for (int k = 0; k < reverseA.size(); k++) {
+            int tmp = Integer.valueOf(reverseA.get(k)) + Integer.valueOf(reverseB.get(k)) + approve;
+            approve = 0;
+            if (tmp >= 10) {
+                approve = 1;
+                res.add(k, String.valueOf(tmp - 10));
+            } else {
+                res.add(k, String.valueOf(tmp));
+            }
+        }
+        List<String> stringList = Lists.reverse(res);
+        if (stringList.get(0).equals("0")) {
+            return stringList.subList(1, stringList.size());
+        }
+        return stringList;
+    }
+
+
+    public static void test13(){
+        Stack stack = new Stack();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.push(4);
+        stack.push(5);
+        stack.push(6);
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());
+        }
+    }
     public static void main(String[] args) throws JsonProcessingException {
 //        System.out.println(Demo1.test());
 //        test1();
@@ -282,7 +338,9 @@ public class Demo1 {
 //        test9();
 //        test10();
 //        test11();
-        test12();
-
+//        test12();
+//        System.out.println(str_add_str("1616156416461261614161","1654564561615616515615616516"));
+//        System.out.println(str_add_str("1","9"));
+        test13();
     }
 }

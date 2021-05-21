@@ -1,11 +1,11 @@
 customer:
-  ip: ENC(nj5O42Th0M6Q0GlXb4GEup7uj9zEOCzTcCRkDluxTxLM2Z4AYdZqqavwzEwzEVKT)
+  ip: ENC(zVF/QuMVFu7MmRh/LGH5b5yujKJvcJ8e58tzVArjemxWSiPX8JkLjU8sTaqWPHwE)
   redis:
-    port: ENC(dvphhNHHfsl2pxZqV6sIZQ4JTZe5o6kf0Fk79pxshuCsSpkuCnos9esaTtTMEp+h)
+    port: ENC(6bEtY0PUFqbHPrAkgkiXL54l3X2SUh9BHf52SLjt+06CUBo25kZA7T9TUa6vcBQZ)
   mysql:
-    port: ENC(8MD/jZNughLPCD6NrDhMiOpJJtPeavuskdDlR/uM4PVBkrDnM+WJ0iz8zHcZGTcM)
-    user: ENC(YIHvAEtmVUdII7hHTD4nyNH+fv9ebOdOgRWnaPhAZP1p6E8howcZXj3HcaMDcbsw)
-    password: ENC(ExyTsG6BY42cR2M94C7FdTjs6qNHI5A9AaugkfY5MExW9FRR9TJeaHPjkDThRhNv)
+    port: ENC(E5Z2WPIUfIFIL7rqFAKUKG3lPv3IkgLKdl3cmHlftRKIhbs540FXyW6v6eKM3yDi)
+    user: ENC(t2InYqCRG8KNy3ytpUX8L5+9yz8jZqJccDmpdrOA+opN5in1ylmU7Pved7c0aGiQ)
+    password: ENC(t2InYqCRG8KNy3ytpUX8L5+9yz8jZqJccDmpdrOA+opN5in1ylmU7Pved7c0aGiQ)
 spring:
   application:
     name: back-demo
@@ -16,6 +16,7 @@ spring:
       datasource:
         risk:
           url: jdbc:mysql://${customer.ip}:${customer.mysql.port}/bpm_risk?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
+#          url: jdbc:mysql://${customer.ip}:${customer.mysql.port}/bpm_risk?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=CTT
           username: ${customer.mysql.user}
           password: ${customer.mysql.password}
           driver-class-name: com.mysql.cj.jdbc.Driver
