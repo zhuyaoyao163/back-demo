@@ -1,9 +1,6 @@
 package com.example.backdemo.leetcode.binary_tree;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @description:
@@ -121,6 +118,22 @@ public class Bintree {
         list.forEach(a-> System.out.println(a.data));
     }
 
+    public void levelOrder(Bintree root){
+        LinkedList<Bintree> list = new LinkedList();
+        list.add(root);
+        while (list.size() > 0){
+            Bintree tmp = list.pop();
+            System.out.println(tmp.data);
+            if (tmp.left != null) {
+                list.add(tmp.left);
+            }
+
+            if (tmp.right != null) {
+                list.add(tmp.right);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Object []a={2,4,5,7,1,6,12,32,51,22};
         Bintree bintree = new Bintree();
@@ -128,5 +141,7 @@ public class Bintree {
         bintree.midOrder(bintree.root);
         System.out.println("==================================");
         bintree.midOrder2(bintree.root);
+        System.out.println("==================================");
+        bintree.levelOrder(bintree.root);
     }
 }
